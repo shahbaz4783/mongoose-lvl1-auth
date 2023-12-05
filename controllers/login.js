@@ -1,3 +1,4 @@
+import md5 from 'md5';
 import User from '../models/Users.js';
 
 export const loginController = (req, res) => {
@@ -8,7 +9,7 @@ export const loginController = (req, res) => {
 export const postLogin = async (req, res) => {
 	try {
 		const email = req.body.email;
-		const password = req.body.password;
+		const password = md5(req.body.password);
 
 		const user = await User.findOne({ email: email });
 

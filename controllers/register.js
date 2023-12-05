@@ -1,3 +1,4 @@
+import md5 from 'md5';
 import User from '../models/Users.js';
 
 export const registerController = (req, res) => {
@@ -7,7 +8,7 @@ export const registerController = (req, res) => {
 export const postRegister = async (req, res) => {
 	try {
 		const email = req.body.email;
-		const password = req.body.password;
+		const password = md5(req.body.password);
 
 		const user = new User({
 			email: email,
